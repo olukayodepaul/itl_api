@@ -1,30 +1,26 @@
 const express  = require('express');
 const app = express();
 const bodyParser = require('body-parser')
+const AppConfigurations = require('./utils/config')
+const usersRouters = require('./users/usersroutershandlers').processes()
 
 
 class Server {
 
     constructor() {
-        //this.instantiateMondbDatabaseConnection()
         this.setRouteAndMiddleWare();
         this.startServer();
     }
 
-    // instantiateMondbDatabaseConnection() {
-    //    mongoDbConnection.applyConnection()
-    // }
-
     setRouteAndMiddleWare() { 
         app.use(bodyParser.urlencoded({ extended: false }));
         app.use(bodyParser.json());
-        //app.use(usersRouters)
-        //app.use(customerRouters)
+        app.use(usersRouters);
     }
 
     startServer() {
-        const declearConfig = JSON.parse(new Config().config())
-        const port = declearConfig.serverinstanceport.port
+        const setAppConfiguration = JSON.parse(new AppConfigurations().config())
+        const port = setAppConfiguration.serverPortNumber.port
         app.listen(port ,()=>{
             console.log(`listening on port 9100 ${port}`)
         })
