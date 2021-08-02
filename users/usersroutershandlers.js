@@ -5,14 +5,14 @@ const router = express.Router();
 class HandleAllUsersRoutes {
 
 
-    static routes() {
+    static setRoutes() {
     
         router.get(`/help/`, (req,res)=>{
-            console.log({})
+            res.send({})
         });
 
+        return router
     }
-
 }
 
 module.exports = HandleAllUsersRoutes;

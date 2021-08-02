@@ -8,9 +8,9 @@ const usersRoutes = require('./users/usersroutershandlers')
 class Server {
 
     constructor() {
-        this.setRouteAndMiddleWare();
-        this.startServer();
-        thios.setRoute()
+        this.setMiddleWare();
+        this.setAllRoute();
+        this.startServerInstance()
     }
 
     setMiddleWare() { 
@@ -18,8 +18,8 @@ class Server {
         app.use(bodyParser.json());
     }
 
-    setRoute() {
-        app.use(usersRoutes.routes())
+    setAllRoute() {
+        app.use(usersRoutes.setRoutes())
     }
 
     startServerInstance() {
