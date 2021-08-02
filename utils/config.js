@@ -2,16 +2,25 @@ require('dotenv').config()
 
 class AppConfigurations{
 
-    constructor() {
-    }
 
-    config() {
+    appConfiguration() {
 
         const config = {
                 appname: "Api",
                 serverPortNumber: {
-                    port: process.env.APIPORT || 9300
-                }
+                    port: process.env.APISERVERPORT 
+                },
+                pgadmin: {
+                    user: process.env.DBSUSERNAME,
+                    host: process.env.DBHOST,
+                    database: process.env.DBNAME,
+                    password: process.env.DBPASSWORD,
+                    port: process.env.DBPORT,
+                    dialect: "postgres",
+                    ssl: {
+                        rejectUnauthorized: false
+                    }
+                },
             };
 
             return JSON.stringify(config)

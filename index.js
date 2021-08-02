@@ -1,8 +1,8 @@
 const express  = require('express');
 const app = express();
 const bodyParser = require('body-parser')
-const AppConfigurations = require('./utils/config')
-const usersRoutes = require('./users/usersroutershandlers')
+const appConfigurations = require('./utils/config')
+const usersRoutes = require('./users/usersroute')
 
 
 class Server {
@@ -10,7 +10,7 @@ class Server {
     constructor() {
         this.setMiddleWare();
         this.setAllRoute();
-        this.startServerInstance()
+        this.startServerInstance();
     }
 
     setMiddleWare() { 
@@ -23,10 +23,10 @@ class Server {
     }
 
     startServerInstance() {
-        const setAppConfiguration = JSON.parse(new AppConfigurations().config())
+        const setAppConfiguration = JSON.parse(new appConfigurations().appConfiguration())
         const port = setAppConfiguration.serverPortNumber.port
         app.listen(port ,()=>{
-            console.log(`listening on port 9100 ${port}`)
+            console.log(`listening on port 9300 ${port}`)
         })
     }
 }
