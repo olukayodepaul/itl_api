@@ -4,7 +4,12 @@ const router = express.Router();
 
 class HandleAllUsersRoutes {
 
-    static processes() {
+
+    static routes() {
+    
+        router.get(`/help/`, (req,res)=>{
+            console.log({})
+        });
 
     }
 

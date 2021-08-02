@@ -8,7 +8,7 @@ class AppConfigurations{
     config() {
 
         const config = {
-                appname: "ITLApi",
+                appname: "Api",
                 serverPortNumber: {
                     port: process.env.APIPORT || 9300
                 }
@@ -17,6 +17,7 @@ class AppConfigurations{
             return JSON.stringify(config)
         }
 }
+
 
 module.exports = AppConfigurations;
 

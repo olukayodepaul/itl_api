@@ -2,7 +2,7 @@ const express  = require('express');
 const app = express();
 const bodyParser = require('body-parser')
 const AppConfigurations = require('./utils/config')
-const usersRouters = require('./users/usersroutershandlers').processes()
+const usersRoutes = require('./users/usersroutershandlers')
 
 
 class Server {
@@ -10,15 +10,19 @@ class Server {
     constructor() {
         this.setRouteAndMiddleWare();
         this.startServer();
+        thios.setRoute()
     }
 
-    setRouteAndMiddleWare() { 
+    setMiddleWare() { 
         app.use(bodyParser.urlencoded({ extended: false }));
         app.use(bodyParser.json());
-        app.use(usersRouters);
     }
 
-    startServer() {
+    setRoute() {
+        app.use(usersRoutes.routes())
+    }
+
+    startServerInstance() {
         const setAppConfiguration = JSON.parse(new AppConfigurations().config())
         const port = setAppConfiguration.serverPortNumber.port
         app.listen(port ,()=>{
