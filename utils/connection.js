@@ -14,15 +14,12 @@ class Connection{
     } 
 
     static setMongoDbConnection(){
-
     }
 
     static setRedisConnection(){
-
     }
 
     static setMysqlConnection(){
-
     }
     
 }
