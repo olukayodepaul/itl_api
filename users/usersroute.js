@@ -7,8 +7,10 @@ const userlogins = require('./userlogins')
 class HandleAllUsersRoutes {
     
     static setRoutes() {
+
+        const baseUrl = "/api/users"
     
-        router.get(`/help/`, (req,res)=>{
+        router.get(`${baseUrl}/login/`, (req,res)=>{
             new userlogins(req,res)
         });
 

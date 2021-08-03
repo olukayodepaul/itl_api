@@ -24,7 +24,7 @@ class Server {
 
     startServerInstance() {
         const setAppConfiguration = JSON.parse(new appConfigurations().appConfiguration())
-        const port = setAppConfiguration.serverPortNumber.port
+        const port = setAppConfiguration.serverPortNumber
         app.listen(port ,()=>{
             console.log(`listening on port 9300 ${port}`)
         })

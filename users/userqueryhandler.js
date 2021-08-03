@@ -1,0 +1,7 @@
+class UserQueryHandler{
+
+    static HandleUsersQuery(){
+        
+    }
+
+}

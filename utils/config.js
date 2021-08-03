@@ -7,9 +7,7 @@ class AppConfigurations{
 
         const config = {
                 appname: "Api",
-                serverPortNumber: {
-                    port: process.env.APISERVERPORT 
-                },
+                serverPortNumber: process.env.APISERVERPORT,
                 pgadmin: {
                     user: process.env.DBSUSERNAME,
                     host: process.env.DBHOST,
