@@ -1,6 +1,6 @@
 const dateTime = require('../utils/datetime');
 const connection = require('../utils/connection');
-const responsefromserverrequest = require('../utils/responsehandler');
+const response = require('../utils/responsehandler');
 
 
 class UsersLogin extends dateTime {
@@ -14,21 +14,26 @@ class UsersLogin extends dateTime {
 
     async _setCoreImplementation() {
 
-        const clientConnection = await connection.setPgConnection().connect()
+        const connect = await connection.setPgConnection().connect()
 
         try{
+
             const query = `SELECT * FROM users`
-            const {rowCount, rows} = await clientConnection.query(query,[]);
-            responsefromserverrequest.responseHandlers(200, this.res, JSON.stringify(rows));
+            const {rowCount, rows} = await connect.query(query,[]);
+            response.responseHandlers(200, this.res,rows);
             
         }catch(err){
             console.log(err)
         }finally{
-            clientConnection.release(true)
+            connect.release(true)
         }
-        
     }
-
 }
 
 module.exports = UsersLogin
+
+
+
+
+
+
