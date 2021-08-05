@@ -18,9 +18,9 @@ class UsersLogin extends dateTime {
 
         try{
 
-            const query = `SELECT * FROM users`
+            const query = `SELECT * FROM users where id = 9`
             const {rowCount, rows} = await connect.query(query,[]);
-            response.responseHandlers(200, this.res,rows);
+            response.responseHandlers(200, this.res,rowCount);
             
         }catch(err){
             console.log(err)
