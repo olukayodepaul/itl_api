@@ -1,14 +1,10 @@
-const datetime = require('../utils/datetime');
-const response = require('../utils/responsehandler');
 const connection = require('../utils/connection').setPgConnection();
 const pgsqlquery = JSON.parse(require('./userqueryhandler').getQueryHandler())
+const response = require('../utils/responsehandler');
 
-
-
-class UsersLogin extends datetime {
+class UserModules{
 
     constructor(req,res) {
-        super()
         this.req = req.query;
         this.res = res;
         this._setCoreImplementation()
@@ -20,9 +16,9 @@ class UsersLogin extends datetime {
 
         try{
 
-            const{username, password} = this.req
-            const setLoginParameter = [username, password]
-            const {rowCount, rows} = await connect.query(pgsqlquery.validateUsers,setLoginParameter);
+            const{user_id} = this.req
+            const setModulParameter = [user_id]
+            const {rowCount, rows} = await connect.query(pgsqlquery.getUserModule,setModulParameter);
             let setResponce;
 
             if(rowCount>0) {
@@ -30,16 +26,17 @@ class UsersLogin extends datetime {
                 setResponce = {
                     status:200,
                     message: "Succesful",
-                    data: rows[0]
+                    data: rows
                 }
     
             }else{
                 
                 setResponce = {
                     status:400,
-                    message: "Invalid Username and Password",
+                    message: "No module assigned to you",
                     data: ""
                 }
+
             }
 
             response.responseHandlers(200, this.res,setResponce);
@@ -52,10 +49,4 @@ class UsersLogin extends datetime {
     }
 }
 
-module.exports = UsersLogin
-
-
-
-
-
-
+module.exports = UserModules
